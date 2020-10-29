@@ -1,9 +1,9 @@
 <template>
-  <nav>
+  <!-- <nav>
     <span>导航：</span>
     <router-link to="/">首页</router-link>
     <router-link to="/doc">内容</router-link>
-  </nav>
+  </nav> -->
   <router-view />
 </template>
 
