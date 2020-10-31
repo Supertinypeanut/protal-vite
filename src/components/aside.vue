@@ -1,9 +1,9 @@
 <template>
   <aside v-if="asideVisible" class="aside">
-    <nav>Switch</nav>
-    <nav>Button</nav>
-    <nav>Textarea</nav>
-    <nav>Didlog</nav>
+    <router-link tag="nav" to="/doc/switch">Switch</router-link>
+    <router-link tag="nav" to="/doc/button">Button</router-link>
+    <router-link tag="nav" to="/doc/dailog">Didlog</router-link>
+    <router-link tag="nav" to="/doc/tabs">Tabs</router-link>
   </aside>
 </template>
 
@@ -26,9 +26,11 @@ export default {
   background-color: rgb(61, 56, 56);
   color: #fff;
   padding-top: 30px;
-  nav {
+  a {
+    display: block;
     text-align: center;
     height: 32px;
+    cursor: pointer;
     &:hover {
       background-color: rgb(32, 161, 225);
     }
