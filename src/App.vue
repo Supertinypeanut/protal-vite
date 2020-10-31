@@ -1,14 +1,14 @@
 <template>
-  <nav>
-    <span>导航：</span>
-    <router-link to="/">首页</router-link>
-    <router-link to="/doc">内容</router-link>
-  </nav>
   <router-view />
 </template>
 
-<script>
+<script lang="ts">
+import { ref, provide } from 'vue'
 export default {
   name: 'App',
+  setup() {
+    const asideVisible = ref(true)
+    provide('asideVisible', asideVisible)
+  },
 }
 </script>

@@ -1,8 +1,5 @@
 <template>
-  <nav class="topnav">
-    <div class="logo"></div>
-    <div class="meun"></div>
-  </nav>
+  <tabBar />
   <section class="banner">
     <h1>Demo UI</h1>
     <h2>一个demo的UI框架</h2>
@@ -18,7 +15,13 @@
 </template>
 
 <script lang="ts">
-export default {}
+import tabBar from '../components/tabBar.vue'
+export default {
+  name: 'Home',
+  components: {
+    tabBar,
+  },
+}
 </script>
 
-<style></style>
+<style lang="scss"></style>
