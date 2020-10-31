@@ -11,6 +11,7 @@ export const router = createRouter({
     },
     {
       path: '/doc', component: Doc,
+      redirect: '/doc/switch',
       children: [
         {
           path: 'switch',
@@ -21,8 +22,8 @@ export const router = createRouter({
           component: ()=> import('./components/buttonControl.vue')
         },
         {
-          path: 'dailog',
-          component: ()=> import('./components/dailogControl.vue')
+          path: 'dialog',
+          component: ()=> import('./components/dialogControl.vue')
         },
         {
           path: 'tabs',
