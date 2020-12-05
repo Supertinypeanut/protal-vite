@@ -12,6 +12,7 @@ export default {
     value: Boolean,
   },
   setup(props: any, context: any) {
+    console.log(props, { ...context.attrs })
     const toggle = () => {
       context.emit('update:value', !props.value)
     }
