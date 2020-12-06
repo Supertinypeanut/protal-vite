@@ -1,8 +1,8 @@
 <template>
   <tabBar />
   <section class="banner">
-    <h1>Demo UI</h1>
-    <h2>一个demo的UI框架</h2>
+    <h1>it UI</h1>
+    <h2>一个it 的UI框架</h2>
     <p class="action">
       <a>GitHub</a>
       <a>GitHub</a>

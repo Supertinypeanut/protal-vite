@@ -1,10 +1,10 @@
 <template>
   <transition name="too-left" mode="out-in">
     <aside v-if="asideVisible" class="aside">
-      <router-link tag="nav" to="/doc/switch">Switch</router-link>
-      <router-link tag="nav" to="/doc/button">Button</router-link>
-      <router-link tag="nav" to="/doc/dialog">Dialog</router-link>
-      <router-link tag="nav" to="/doc/tabs">Tabs</router-link>
+      <router-link tag="nav" to="/doc/switch-demo">Switch</router-link>
+      <router-link tag="nav" to="/doc/button-demo">Button</router-link>
+      <router-link tag="nav" to="/doc/dialog-demo">Dialog</router-link>
+      <router-link tag="nav" to="/doc/tabs-demo">Tabs</router-link>
     </aside>
   </transition>
 </template>
@@ -13,9 +13,9 @@
 import { inject, Ref } from 'vue'
 import { router } from '../router'
 export default {
-  name: 'aside',
+  name: 'it-aside',
   setup() {
-    const asideVisible = inject<Ref<boolean>>('asideVisible')
+    const asideVisible: any = inject<Ref<boolean>>('asideVisible')
 
     // 移动端切换aside后自动关闭
     const width = document.documentElement.clientWidth
