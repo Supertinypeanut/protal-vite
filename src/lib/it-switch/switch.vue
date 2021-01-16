@@ -7,18 +7,19 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'it-switch',
   props: {
     value: Boolean,
   },
   setup(props: any, context: any) {
-    console.log(props, { ...context.attrs })
     const toggle = () => {
       context.emit('update:value', !props.value)
     }
     return { toggle }
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

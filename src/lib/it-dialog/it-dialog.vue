@@ -1,5 +1,5 @@
 <template>
-  <template v-if="visible">
+  <div v-if="visible">
     <Teleport to="body">
       <div class="it-dialog">
         <div class="it-dialog-overlay" @click="onClickOverlay"></div>
@@ -14,19 +14,19 @@
             </main>
             <footer>
               <slot name="footer">
-                <it-button>取消</it-button>
-                <it-button>确定</it-button>
+                <it-button @click="onCancel">取消</it-button>
+                <it-button @click="onSubmit">确定</it-button>
               </slot>
             </footer>
           </div>
         </div>
       </div>
     </Teleport>
-  </template>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, SetupContext } from 'vue'
 import { ItButton } from '../it-button'
 export default defineComponent({
   name: 'it-dialog',
@@ -39,18 +39,32 @@ export default defineComponent({
       required: true,
       default: false,
     },
+    clickOverlayClose: {
+      type: Boolean,
+      default: true,
+    },
   },
-  setup() {
+  emits: ['update:close', 'update:onCancel', 'update:onSubmit'],
+  setup(props, content: SetupContext) {
     const onClose = () => {
-      console.log('onClose')
+      content.emit('update:close')
+    }
+    const onCancel = () => {
+      content.emit('update:onCancel')
+    }
+    const onSubmit = () => {
+      content.emit('update:onSubmit')
     }
     const onClickOverlay = () => {
-      console.log('onClickOverlay')
+      if (!props.clickOverlayClose) return
+      onClose()
     }
 
     return {
       onClickOverlay,
       onClose,
+      onSubmit,
+      onCancel,
     }
   },
 })
