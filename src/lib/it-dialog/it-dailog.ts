@@ -28,6 +28,7 @@ const $itDailog = (options: {
           },
           'onUpdate:onSubmit': () => {
             console.log('onSubmit')
+            options?.onSubmit?.()
           },
         },
         {

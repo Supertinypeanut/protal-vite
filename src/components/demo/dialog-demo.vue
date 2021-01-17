@@ -1,14 +1,16 @@
 <template>
   <div>
     <it-button @click="onShowDialog">open dialog</it-button>
-    <it-dialog :visible="visible" @close="close"> dailog content </it-dialog>
+    <it-dialog :visible="visible" @update:close="close">
+      dailog content
+    </it-dialog>
 
     <it-button @click="openFnDailog">函数dailog</it-button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, wa } from 'vue'
 import { ItDialog, $itDailog } from '../../lib/it-dialog'
 import { ItButton } from '../../lib/it-button'
 export default defineComponent({
