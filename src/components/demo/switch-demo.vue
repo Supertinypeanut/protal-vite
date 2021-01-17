@@ -1,19 +1,21 @@
 <template>
-  <Switch v-model:value="checkout" />
+  <div>
+    <it-switch v-model:value="checkout" />
+  </div>
 </template>
 
 <script lang="ts">
-import { Switch } from '../../lib/switch'
-import { ref } from 'vue'
-export default {
+import { ItSwitch } from '../../lib/it-switch'
+import { defineComponent, ref } from 'vue'
+export default defineComponent({
   components: {
-    Switch,
+    ItSwitch,
   },
   setup(prop, context) {
     const checkout = ref(false)
     return { checkout }
   },
-}
+})
 </script>
 
 <style></style>
