@@ -11,7 +11,7 @@
         :key="c.props.name"
         :ref="
           (el) => {
-            if (el && c.props.name === selected) selectTitleEl = el
+            if (c.props.name === selected) selectTitleEl = el
           }
         "
       >
@@ -19,12 +19,22 @@
       </div>
       <span ref="selectLine" class="select-line"></span>
     </div>
-    <component class="" v-for="c in tabList" :key="c.props.name" :is="c" />
+    <!-- <component v-for="c in tabList" :key="c.props.name" :is="c" /> -->
+
+    <!-- 内容内组件会销毁 -->
+    <component :key="selectContainer.props.name" :is="selectContainer" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, onMounted, watchEffect, ref } from 'vue'
+import {
+  defineComponent,
+  SetupContext,
+  onMounted,
+  onUpdated,
+  ref,
+  computed,
+} from 'vue'
 import { ItTab } from './index'
 export default defineComponent({
   name: 'it-tabs',
@@ -42,26 +52,29 @@ export default defineComponent({
       return true
     })
 
+    const selectContainer = computed(() => {
+      return tabList.find((c: any) => c.props.name === props.selected)
+    })
+
     // 计算选中title元素
     const navTitle = ref<HTMLDivElement>(null)
     const selectTitleEl = ref<HTMLDivElement>(null)
     const selectLine = ref<HTMLDivElement>(null)
-    onMounted(() => {
-      watchEffect(() => {
-        const { left: navTitleLeft } = navTitle.value.getBoundingClientRect()
-        const {
-          left: selectTitleElLeft,
-          width,
-        } = selectTitleEl.value.getBoundingClientRect()
-        const left = selectTitleElLeft - navTitleLeft
+    const computePosition_width = () => {
+      const { left: navTitleLeft } = navTitle.value.getBoundingClientRect()
+      const {
+        left: selectTitleElLeft,
+        width,
+      } = selectTitleEl.value.getBoundingClientRect()
+      const left = selectTitleElLeft - navTitleLeft
 
-        selectLine.value.style.width = `${width}px`
-        selectLine.value.style.left = `${left}px`
-      })
-    })
+      selectLine.value.style.width = `${width}px`
+      selectLine.value.style.left = `${left}px`
+    }
+    onMounted(computePosition_width)
+    onUpdated(computePosition_width)
 
     const onClickTitle = (c: any) => {
-      console.log(c.props.name)
       context.emit('update:selected', c.props.name)
     }
 
@@ -70,6 +83,7 @@ export default defineComponent({
       onClickTitle,
       selectTitleEl,
       navTitle,
+      selectContainer,
       selectLine,
     }
   },
@@ -96,6 +110,7 @@ export default defineComponent({
     bottom: 0;
     background-color: aquamarine;
     height: 1px;
+    transition: all 250ms;
   }
 }
 </style>
