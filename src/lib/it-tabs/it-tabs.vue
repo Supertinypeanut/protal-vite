@@ -19,10 +19,18 @@
       </div>
       <span ref="selectLine" class="select-line"></span>
     </div>
-    <!-- <component v-for="c in tabList" :key="c.props.name" :is="c" /> -->
+
+    <template v-if="isCacheContain">
+      <component
+        :class="{ contain: true, 'select-contain': c.props.name === selected }"
+        v-for="c in tabList"
+        :key="c.props.name"
+        :is="c"
+      />
+    </template>
 
     <!-- 内容内组件会销毁 -->
-    <component :key="selectContainer.props.name" :is="selectContainer" />
+    <component v-else :key="selectContainer.props.name" :is="selectContainer" />
   </div>
 </template>
 
@@ -42,6 +50,10 @@ export default defineComponent({
     selected: {
       type: String,
       required: true,
+    },
+    isCacheContain: {
+      type: Boolean,
+      default: true,
     },
   },
   setup(props, context: SetupContext) {
@@ -111,6 +123,12 @@ export default defineComponent({
     background-color: aquamarine;
     height: 1px;
     transition: all 250ms;
+  }
+}
+.contain {
+  display: none;
+  &.select-contain {
+    display: block;
   }
 }
 </style>
