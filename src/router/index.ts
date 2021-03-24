@@ -2,7 +2,9 @@ import Home from '../views/Home.vue'
 import Doc from '../views/Doc.vue'
 import { createWebHistory, createRouter } from 'vue-router'
 
-const history = createWebHistory()
+const history = createWebHistory(
+  process.env.NODE_ENV === 'production' ? '/protal-vite' : '/'
+)
 export const router = createRouter({
   history,
   routes: [

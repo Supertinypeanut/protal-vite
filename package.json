@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "NODE_ENV=production vite build"
   },
   "dependencies": {
     "typescript": "^4.1.3",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/node": "^14.14.35",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "@vue/compiler-sfc": "^3.0.0-rc.1",
